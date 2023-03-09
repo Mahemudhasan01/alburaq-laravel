@@ -47,13 +47,13 @@
                 <div class="col-md-12">
                     <ul class="admin-menu">
                         <li>
-                            <a href="#">Producs</a>
+                            <a href="{{route('product.view')}}">Producs</a>
                         </li>
                         <li>
                             <a href="{{route('view.orders')}}">Orders</a>
                         </li>
                         <li>
-                            <a href="#">Users</a>
+                            <a href="{{route('view.users')}}">Users</a>
                         </li>
                     </ul>
                 </div>
