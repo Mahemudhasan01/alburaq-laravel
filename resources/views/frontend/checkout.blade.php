@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="{{ asset('res/img/favicon.ico') }}" rel="icon">
+    <link href="{{ asset('/res/img/favicon.ico') }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -19,7 +19,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min" rel="stylesheet" />
 
     <!-- Libraries Stylesheet -->
-    <link href="{{ asset('res/lib/animate/animate.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/res/lib/animate/animate.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('/res/lib/owlcarousel/assets/owl.carousel.min') }}" rel="stylesheet" />
     <link href="{{ asset('/res/lib/owlcarousel/assets/owl.carousel') }}" rel="stylesheet" />
 
