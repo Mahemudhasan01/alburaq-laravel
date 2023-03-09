@@ -46,7 +46,7 @@
         </div>
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
-                <a href="{{ route('index') }}" class="text-decoration-none">
+                <a href="{{ route('home.index') }}" class="text-decoration-none">
                     <span class="h1 text-uppercase text-primary bg-dark px-2">
                         Al
                     </span>
@@ -240,7 +240,7 @@
                         </div>
                     </div>
                     <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
-                        <a href="" class="btn px-0"
+                        <a href="{{route('view.shopping.cart')}}" class="btn px-0"
                             style="
                     padding-bottom: 2px;
                     margin-left: 5px;
@@ -256,7 +256,7 @@
                                 0
                             </span>
                         </a>
-                        <a href="" class="btn px-0 ml-3"
+                        <a href="{{route('view.shopping.cart')}}" class="btn px-0 ml-3"
                             style="
                     padding-bottom: 2px;
                     margin-left: 5px;
