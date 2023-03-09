@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
 
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min"')}}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min" rel="stylesheet" />
 
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('res/lib/animate/animate.min.css') }}" rel="stylesheet" />
@@ -24,7 +24,7 @@
     <link href="{{ asset('/res/lib/owlcarousel/assets/owl.carousel') }}" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min"')}}"
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5toeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link href="{{ '/res/css/style.css' }}" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
