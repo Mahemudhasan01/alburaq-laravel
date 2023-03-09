@@ -21,10 +21,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" integrity="sha512-2bMhOkE/ACz21dJT8zBOMgMecNxx0d37NND803ExktKiKdSzdwn+L7i9fdccw/3V06gM/DBWKbYmQvKMdAA9Nw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- Libraries Stylesheet -->
-    <link href="{{ asset('/res/lib/animateate/animate.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('/res/lib/owlcarousel/assets/owl.carousel.min"') }}" rel="stylesheet" />
-    <link href="{{ asset('/res/lib/owlcarousel/assets/owl.carousel"') }}" rel="stylesheet" />
+       <!-- Libraries Stylesheet -->
+       <link href="{{ asset('/res/lib/animate/animate.min.css') }}" rel="stylesheet" />
+       <link href="{{ asset('/res/lib/owlcarousel/assets/owl.carousel.min') }}" rel="stylesheet" />
+       <link href="{{ asset('/res/lib/owlcarousel/assets/owl.carousel') }}" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min"
