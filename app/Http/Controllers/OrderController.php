@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +13,14 @@ class OrderController extends Controller
     public function viewCheckOut()
     {
         $total_price = 0;
-        $carts = DB::table('carts')->get();
+        $carts = DB::table('carts')
+        ->join('products', function(JoinClause $join){
+            // Get Id from session to show carts products according to user
+            $session = session()->get('user');
+            $join->on('carts.user_id', '=', 'products.id')
+                 ->where('carts.user_id', '=', $session['id']);
+        })
+        ->get();
 
         foreach ($carts as $item) {
             $total_price += $item->price;

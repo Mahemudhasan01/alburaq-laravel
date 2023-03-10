@@ -155,7 +155,7 @@
                             <div class="title">Side Menu</div>
                             <ul class="list-items">
                                 <li>
-                                    <a href="index.php">
+                                    <a href="{{route('home.index')}}">
                                         <i class="fa fa-angle-right"></i>Home
                                     </a>
                                 </li>
@@ -186,7 +186,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="contact.php">
+                                    <a href="{{route('view.contact')}}">
                                         <i class="fa fa-angle-right"></i>Contact us
                                     </a>
                                 </li>
@@ -305,7 +305,7 @@
                         BuraQ
                     </span>
                 </a>
-                <a href="userlogin.php"
+                <a href="{{route('view.login')}}"
                     style="
                 margin-left: auto;
                 margin-left: auto;
@@ -327,7 +327,7 @@
                 margin-left: auto;
                 margin-right: auto;
               ">
-                    <a href="cart.php">
+                    <a href="{{route('view.shopping.cart')}}">
                         <i class="fas fa-shopping-cart"
                             style="
                     color: #4a4a4a;

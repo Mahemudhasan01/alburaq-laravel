@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,31 +14,63 @@ class CartController extends Controller
     //Show Carts Data
     public function viewShoppingCart()
     {
-        $total_price = 0;
-        $carts = DB::table('carts')->get();
+        if (session()->has('user')) {
+            $total_price = 0;
 
-        foreach ($carts as $item) {
-            $total_price += $item->price;
+            //Get Products Details
+            // $carts = DB::table('carts')
+            //             ->join('products', 'carts.id', '=', 'products.id')
+            //             ->select('products.*', 'carts.*')
+            //             ->where('carts.user_id', '=', $session['id'])
+            //             ->get();
+
+            //Get Products Details
+            $carts = DB::table('carts')
+                        ->join('products', function(JoinClause $join){
+                            // Get Id from session to show carts products according to user
+                            $session = session()->get('user');
+                            $join->on('carts.product_id', '=', 'products.id')
+                                 ->where('carts.user_id', '=', $session['id']);
+                        })
+                        ->get();
+            
+            // dd($session['id']);
+
+            foreach ($carts as $item) {
+                $total_price += $item->price;
+            }
+            return view('frontend/cart', ["carts" => $carts, 'total_price' => $total_price]);
+        } else {
+            return redirect(route('view.login'));
         }
-        return view('frontend/cart', ["carts" => $carts, 'total_price' => $total_price]);
     }
-    
+
     public function addShoppingCart($id)
     {
-        $product = Product::where('id', $id)->first();
+        if (session()->has('user')) {
+            //Get ID from session
+            $userid = session()->get('user');
 
-        $cart = DB::table('carts')->where('product_id', '=', $id)->pluck('product_id');
+            $product = Product::where('id', $id)->first();
 
-        if (empty($cart['0'])) {
-            DB::table('carts')->insert([
-                'product_name' => $product->name,
-                'img' => $product->img,
-                'price' => $product->price,
-                'product_id' => $product->id,
-            ]);
-            return redirect('/');
+            $cart = DB::table('carts')
+                        ->where('product_id', '=', $id)
+                        ->where('user_id', '=', $userid['id'])
+                        ->pluck('product_id');
+
+            if (empty($cart['0'])) {
+                DB::table('carts')->insert([
+                    'user_id' => $userid['id'],
+                    'product_id' => $product->id,
+                    'quantity' => 1,
+                    'price' => $product->price,
+                ]);
+                return redirect('/');
+            } else {
+                return back()->with('message', 'This item already added');
+            }
         } else {
-            return back()->with('message', 'This item already added');
+            return redirect(route('view.login'));
         }
     }
 
@@ -47,5 +80,4 @@ class CartController extends Controller
         DB::table('carts')->delete($id);
         return redirect()->back();
     }
-
 }

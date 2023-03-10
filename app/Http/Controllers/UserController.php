@@ -29,8 +29,9 @@ class UserController extends Controller
             //Matched
             $req->session()->put('user', ["id" => $userData->id, "name" => $userData->name]);
 
-            return view('frontend/userlogin');
+            return redirect(route('home.index'));
         } else {
+            
             return back()->with('error', "Email and Password Is Wrong!");
         }
     }

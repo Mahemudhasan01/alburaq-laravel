@@ -175,9 +175,10 @@
             <div class="bg-light p-30 mb-5">
                 <div class="border-bottom">
                     <h6 class="mb-3">Products</h6>
+                    {{-- Data Geting from orderController --}}
                     @foreach ($carts as $item)
                         <div class="d-flex justify-content-between">
-                            <p>{{ $item->product_name }}</p>
+                            <p>{{ $item->name }}</p>
                             <p>{{ $item->price }}</p>
                         </div>
                     @endforeach

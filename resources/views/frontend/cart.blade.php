@@ -51,7 +51,7 @@
                                 <td class="align-middle"><img src="{{ asset('/uploads/products/' . $item->img) }}"
                                         alt="" style="width: 50px;"></td>
                                 <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;">
-                                    {{ $item->product_name }}</td>
+                                    {{ $item->name }}</td>
                                 <td class="align-middle">{{ $item->price }}</td>
                                 <td class="align-middle">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">

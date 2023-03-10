@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 
 //Products Routes
@@ -55,4 +56,17 @@ Route::controller(OrderController::class)->group(function () {
         Route::get('orders/',  'viewOrders')->name('view.orders');
         Route::get('deleteorders/{id}',  'deleteOrders')->name('delete.order');
     });
+});
+
+
+Route::get('session/', function(){
+    $session = session()->get('user');
+
+    return dd($session);
+});
+
+Route::get('distroy/', function(){
+    Session::flush();
+
+    return redirect('session');
 });
