@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
@@ -18,13 +19,6 @@ class CartController extends Controller
             $total_price = 0;
 
             //Get Products Details
-            // $carts = DB::table('carts')
-            //             ->join('products', 'carts.id', '=', 'products.id')
-            //             ->select('products.*', 'carts.*')
-            //             ->where('carts.user_id', '=', $session['id'])
-            //             ->get();
-
-            //Get Products Details
             $carts = DB::table('carts')
                         ->join('products', function(JoinClause $join){
                             // Get Id from session to show carts products according to user
@@ -34,7 +28,7 @@ class CartController extends Controller
                         })
                         ->get();
             
-            // dd($session['id']);
+            dd($carts);
 
             foreach ($carts as $item) {
                 $total_price += $item->price;
