@@ -26,7 +26,7 @@ class productController extends Controller
         return view('frontend/shop', ['products' => $products]);
     }
 
-    public function adminIndex()
+    public function adminLogin()
     {
         return view('backend/index');
     }

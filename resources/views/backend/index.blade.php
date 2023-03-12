@@ -19,11 +19,11 @@
                     <img class="logo" src="{{ url('frontend/images/news.jpg') }}">
                     <h3 class="heading">Admin</h3>
                     <!-- Form Start -->
-                    <form action="" method="POST">
+                    <form action="{{route('admin.check.login')}}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>Username</label>
-                            <input type="text" name="username" class="form-control" placeholder="Username"
+                            <input type="text" name="email" class="form-control" placeholder="Username"
                                 value="{{ old('username') }}" required>
                         </div>
                         <div class="form-group">

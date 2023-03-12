@@ -28,6 +28,7 @@ class CartController extends Controller
                         })
                         ->get();
             
+
             foreach ($carts as $item) {
                 $total_price += $item->price;
             }

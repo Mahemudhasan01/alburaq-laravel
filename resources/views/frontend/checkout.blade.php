@@ -10,8 +10,8 @@
             </span>
         </div>
         <!-- <div class="card card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-          </div> -->
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+              </div> -->
     </div>
 
     <!-- Breadcrumb Start -->
@@ -19,8 +19,8 @@
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="{{route('home.index')}}">Home</a>
-                    <a class="breadcrumb-item text-dark" href="{{route('index')}}">Shop</a>
+                    <a class="breadcrumb-item text-dark" href="{{ route('home.index') }}">Home</a>
+                    <a class="breadcrumb-item text-dark" href="{{ route('index') }}">Shop</a>
                     <span class="breadcrumb-item active">Checkout</span>
                 </nav>
             </div>
@@ -50,27 +50,45 @@
                             @csrf
                             <div class="col-md-6 form-group">
                                 <label>First Name</label>
-                                <input class="form-control" type="text" name="f_name" placeholder="John">
+                                <input class="form-control" type="text" name="first_name" placeholder="John">
+                                @error('first_name')
+                                    <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Last Name</label>
-                                <input class="form-control" type="text" name="l_name" placeholder="Doe">
+                                <input class="form-control" type="text" name="last_name" placeholder="Doe">
+                                @error('last_name')
+                                    <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>E-mail</label>
                                 <input class="form-control" type="email" name="email" placeholder="example@email.com">
+                                @error('email')
+                                    <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Mobile No</label>
                                 <input class="form-control" type="text" name="mobile" placeholder="+123 456 789">
+                                @error('mobile')
+                                    <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Address Line 1</label>
                                 <input class="form-control" type="text" name="address1" placeholder="Street">
+                                @error('address1')
+                                    <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Address Line 2</label>
                                 <input class="form-control" type="text" name="address2" placeholder="Landmark">
+                                @error('address2')
+                                    <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Country</label>
@@ -84,14 +102,23 @@
                             <div class="col-md-6 form-group">
                                 <label>City</label>
                                 <input class="form-control" type="text" name="city" placeholder="Ahmedabad">
+                                @error('city')
+                                <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>State</label>
                                 <input class="form-control" type="text" name="state" placeholder="Gujarat">
+                                @error('state')
+                                    <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>ZIP Code</label>
                                 <input class="form-control" type="text" name="pin_code" placeholder="384265">
+                                @error('pin_code')
+                                    <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <input type="hidden" name="total_price" value="{{ $total_price }}">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
 
@@ -60,7 +62,35 @@ class UserController extends Controller
 
     // Backend Side Code !!!
 
-    public function index()
+    //Login 
+    public function checkLogin(Request $req)
+    {
+        # code...
+        $validator = Validator::make($req->all(), [
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        $data = DB::table('users')
+                    ->where('email', '=', $req->email)
+                    ->where('password', '=', $req->password)
+                    ->where('admin', '=', 1)->get();
+        if(empty($data)){
+            return redirect()->back();
+        }else{
+            session()->put('adminUser', $data);
+            return redirect(route('product.view'));
+        }
+    }
+
+    public function adminLogout()
+    {
+        Session::flash('adminUser');
+        return redirect(route('home.index'));
+    }
+
+    //Show All the users
+    public function showUsers()
     {
         $users = DB::table('users')->get();
 

@@ -23,7 +23,7 @@ Route::controller(productController::class)->group(function () {
         Route::get('productDelete/{id}', 'deleteProduct')->name('delete.product');
         Route::get('updateProduct/{id}', 'updateProduct')->name('update.product');
     });
-    Route::get('admin/', 'adminIndex')->name('admin.index');
+    Route::get('admin/', 'adminLogin')->name('admin.index');
 });
 
 // Add to Cart's Routes
@@ -41,8 +41,10 @@ Route::controller(UserController::class)->group(function () {
     Route::post('adduser/', 'addNewUser')->name('add.new.user');
 
     //Backend Routes
-    Route::group(['prifix' => 'admin'], function(){
-        Route::get('users/', 'index')->name('view.users');
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('users/', 'showUsers')->name('view.users');
+        Route::post('users/', 'checkLogin')->name('admin.check.login');
+        Route::get('logout/', 'adminLogout')->name('admin.logout');
     });
 });
 
@@ -59,13 +61,20 @@ Route::controller(OrderController::class)->group(function () {
 });
 
 
-Route::get('session/', function(){
+Route::get('session/', function () {
     $session = session()->get('user');
 
     return dd($session);
 });
 
-Route::get('distroy/', function(){
+//For Admin
+Route::get('adminsession/', function () {
+    $session = session()->get('adminUser');
+
+    return dd($session);
+});
+
+Route::get('distroy/', function () {
     Session::flush();
 
     return redirect('session');
