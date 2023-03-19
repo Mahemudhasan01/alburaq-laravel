@@ -29,15 +29,21 @@
                                     <td class='id'>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
                                     {{-- <td>{{ $item->img }}</td> --}}
-                                    <td  style="margin:0px"> <img src="{{ asset('uploads/products/' . $item->img) }}" height="50px"
-                                            width="50px"> </td>
-                                    <td>{{ $item->category }}</td>
+                                    <td style="margin:0px"> <img src="{{ asset('uploads/products/' . $item->img) }}"
+                                            height="50px" width="50px"> </td>
+                                    <td>
+                                        @php
+                                            $cat_name = DB::table('categorys')->where('id', '=', $item->category)->first('category_name');
+                                            print($cat_name->category_name);
+                                        @endphp
+                                    </td>
                                     <td>{{ $item->description }}</td>
                                     <td>{{ $item->orignal_price }}</td>
                                     <td>{{ $item->price }}</td>
                                     <td class='edit'><a href='{{ route('update.product', ['id' => $item->id]) }}'><i
                                                 class='fa fa-edit'></i></a></td>
-                                    <td class='delete'><a href='{{ route('delete.product', ['id' => $item->id]) }}'><i class='fa fa-trash-o'></i></a></td>
+                                    <td class='delete'><a href='{{ route('delete.product', ['id' => $item->id]) }}'><i
+                                                class='fa fa-trash-o'></i></a></td>
                                 </tr>
                             @endforeach
                         </tbody>

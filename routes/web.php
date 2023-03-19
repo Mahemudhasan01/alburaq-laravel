@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\productController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,33 @@ Route::controller(productController::class)->group(function () {
         Route::get('updateProduct/{id}', 'updateProduct')->name('update.product');
     });
     Route::get('admin/', 'adminLogin')->name('admin.index');
+});
+
+//Handel Categorys
+Route::controller(CategoryController::class)->group(function () {
+    //User Side
+    //Home Page category Routes
+    Route::group(['prefix' => '/'], function () {
+        Route::get('category/{cat}', 'showCategory')->name('show.category');
+
+        //For Mobiles
+        Route::get('luxury', 'getLuxuryCategory')->name('show.luxury.item');
+        Route::get('woman', 'getWomanCategory')->name('show.woman.item');
+        Route::get('man', 'getManCategory')->name('show.man.item');
+        Route::get('unisex', 'getUnisexCategory')->name('show.unisex.item');
+    });
+    
+
+
+    //Admin Side
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('category/', 'viewCategory')->name('view.category');
+        Route::get('addcategory/', 'viewAddCategory')->name('view.add.category');
+        Route::post('addcategory/', 'addCategory')->name('add.new.category');
+        Route::get('deletecategory/{id}', 'deleteCategory')->name('delete.category');
+        Route::get('editcategory/{id}', 'viewEditCategory')->name('view.edit.category');
+        Route::post('editcategory/', 'updateCategory')->name('update.category');
+    });
 });
 
 // Add to Cart's Routes

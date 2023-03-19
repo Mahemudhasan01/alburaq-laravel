@@ -11,9 +11,12 @@ use Illuminate\Validation\Rules\Password;
 
 class productController extends Controller
 {
+    // *** Frontend Side Stuff ***
     public function homePage()
     {
-        return view('frontend/index');
+        $category_name = DB::table('categorys')->get();
+        
+        return view('frontend/index', ['category' => $category_name]);
     }
 
     public function contactPage(){
@@ -26,20 +29,25 @@ class productController extends Controller
         return view('frontend/shop', ['products' => $products]);
     }
 
+    // *** Backend Side Stuff ***
+
     public function adminLogin()
     {
         return view('backend/index');
     }
 
+    //Show Product in table
     public function productView()
     {
         $products = DB::table('products')->get();
+        
         return view('backend/post', ['products' => $products]);
     }
 
     public function inserProduct()
     {
-        return view('backend/add_post');
+        $categorys = DB::table('categorys')->get();
+        return view('backend/add_post', ['categorys' => $categorys]);
     }
 
 
@@ -51,7 +59,7 @@ class productController extends Controller
                 'product_name' => 'required',
                 'postdesc' => 'required',
                 'fileToUpload' => 'required',
-                // 'category' => 'required',
+                'category' => 'required',
             ]
         );
 
@@ -67,7 +75,7 @@ class productController extends Controller
             $file->move('uploads/products', $filename);
             $product->img = $filename;
         }
-        $product->category = 'Test';
+        $product->category = $req->category;
         $product->orignal_price = $req->orignal_price;
         $product->price = $req->price;
         $product->save();

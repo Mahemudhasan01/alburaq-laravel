@@ -10,15 +10,40 @@
                 <div class="col-md-offset-3 col-md-6">
                     <form action="{{ route('update.category') }}" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <input type="hidden" name="id" class="form-control" value=" {{ $category->id }} "
-                                placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label>Category Name</label>
-                            <input type="text" name="cat_name" class="form-control" value="{{ $category->cat_name }}"
-                                placeholder="" required>
-                        </div>
+                        @foreach ($category as $item)
+                        <input type="hidden" name="id"  value="{{$item->id}}" >
+                            <div class="form-group">
+                                <label>Category Name</label>
+                                <input type="text" name="category" class="form-control" value="{{$item->category_name}}" placeholder="Category Name"
+                                    required>
+                                @error('category')
+                                    <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select class="form-control"  name="gender">
+                                    <option value="{{$item->gender}}"><b>{{$item->gender}}</b></option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Unisex">Unisex</option>
+                                </select>
+                                @error('gender')
+                                    <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Is Luxsury</label>
+                                <select class="form-control" name="luxsury">
+                                    <strong><option value="{{$item->is_luxury}}">{{$item->is_luxury}}</option></strong>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                                @error('luxsury')
+                                    <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        @endforeach
                         <input type="submit" name="sumbit" class="btn btn-primary" value="Update" required />
                     </form>
                 </div>

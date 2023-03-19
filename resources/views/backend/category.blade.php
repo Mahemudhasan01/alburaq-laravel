@@ -8,7 +8,7 @@
                     <h1 class="admin-heading">All Categories</h1>
                 </div>
                 <div class="col-md-2">
-                    <a class="add-new" href=" {{ route('add.category') }} ">add category</a>
+                    <a class="add-new" href="{{ Route('view.add.category') }}">add category</a>
                 </div>
 
                 <div class="col-md-12">
@@ -16,18 +16,28 @@
                         <thead>
                             <th>S.No.</th>
                             <th>Category Name</th>
-                            <th>No. of Posts</th>
+                            <th>No. of Product</th>
+                            <th>Gender</th>
+                            <th>Luxury</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </thead>
                         <tbody>
                             @foreach ($categorys as $item)
                                 <tr>
-                                    <td class='id'>{{ $item->id }}</td>
-                                    <td>{{ $item->cat_name }}</td>
-                                    <td>{{ $item->post }}</td>
-                                    <td class='edit'><a href='{{ route('edit.category', ['id' => $item->id]) }}'><i class='fa fa-edit'></i></a></td>
-                                    <td class='delete'><a href='{{ route('delete.category', ['id' => $item->id]) }}'><i class='fa fa-trash-o'></i></a>
+
+                                    <td class='id'> @php
+                                        $count++;
+                                        print $count;
+                                    @endphp </td>
+                                    <td>{{ $item->category_name }}</td>
+                                    <td>1</td>
+                                    <td>{{ $item->gender }}</td>
+                                    <td>{{ $item->is_luxury }}</td>
+                                    <td class='edit'><a href='{{ route('view.edit.category', ['id' => $item->id]) }}'><i
+                                                class='fa fa-edit'></i></a></td>
+                                    <td class='delete'><a href='{{ route('delete.category', ['id' => $item->id]) }}'><i
+                                                class='fa fa-trash-o'></i></a>
                                     </td>
 
                                 </tr>

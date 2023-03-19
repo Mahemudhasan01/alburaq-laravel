@@ -160,22 +160,22 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{route('show.luxury.item')}}">
                                         <i class="fa fa-angle-right"></i>Luxury Colection
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{route('show.woman.item')}}">
                                         <i class="fa fa-angle-right"></i>Women
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{route('show.man.item')}}">
                                         <i class="fa fa-angle-right"></i> Men
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{route('show.unisex.item')}}">
                                         <i class="fa fa-angle-right"></i> UniSex
                                     </a>
                                 </li>

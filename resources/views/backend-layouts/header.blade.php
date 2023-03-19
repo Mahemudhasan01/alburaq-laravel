@@ -53,6 +53,9 @@
                             <a href="{{route('view.orders')}}">Orders</a>
                         </li>
                         <li>
+                            <a href="{{route('view.category')}}">Categorys</a>
+                        </li>
+                        <li>
                             <a href="{{route('view.users')}}">Users</a>
                         </li>
                     </ul>
