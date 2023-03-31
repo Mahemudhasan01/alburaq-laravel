@@ -17,18 +17,17 @@ class CartController extends Controller
     {
         if (session()->has('user')) {
             $total_price = 0;
+            $session = session()->get('user');
 
             //Get Products Details
-            $carts = DB::table('carts')
-                        ->join('products', function(JoinClause $join){
-                            // Get Id from session to show carts products according to user
-                            $session = session()->get('user');
-                            $join->on('carts.product_id', '=', 'products.id')
-                                 ->where('carts.user_id', '=', $session['id']);
-                        })
-                        ->get();
             
-
+            $carts = DB::table('products')
+            ->join('carts', 'carts.product_id', '=', 'products.id', 'right')
+            ->where('carts.user_id', '=', $session['id'])
+            ->select()
+            ->get();
+           
+            // dd($carts);
             foreach ($carts as $item) {
                 $total_price += $item->price;
             }
@@ -47,9 +46,9 @@ class CartController extends Controller
             $product = Product::where('id', $id)->first();
 
             $cart = DB::table('carts')
-                        ->where('product_id', '=', $id)
-                        ->where('user_id', '=', $userid['id'])
-                        ->pluck('product_id');
+                ->where('product_id', '=', $id)
+                ->where('user_id', '=', $userid['id'])
+                ->pluck('product_id');
 
             if (empty($cart['0'])) {
                 DB::table('carts')->insert([
@@ -57,6 +56,7 @@ class CartController extends Controller
                     'product_id' => $product->id,
                     'quantity' => 1,
                     'price' => $product->price,
+                    'created_at' => date('Y-m-d H:i:s'),
                 ]);
                 return redirect('/');
             } else {
@@ -71,6 +71,7 @@ class CartController extends Controller
     public function removeCartItem($id)
     {
         DB::table('carts')->delete($id);
+
         return redirect()->back();
     }
 }

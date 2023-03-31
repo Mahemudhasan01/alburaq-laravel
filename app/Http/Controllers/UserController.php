@@ -75,6 +75,7 @@ class UserController extends Controller
                     ->where('email', '=', $req->email)
                     ->where('password', '=', $req->password)
                     ->where('admin', '=', 1)->get();
+                    
         if(empty($data)){
             return redirect()->back();
         }else{
