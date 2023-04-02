@@ -15,9 +15,12 @@ class productController extends Controller
     public function homePage()
     {
         $category_name = DB::table('categorys')->get();
-        
-        return view('frontend/index', ['category' => $category_name]);
+        $trending_products = DB::table('products')->where('trending', '=', 'Yes')->get();
+        $special_products = DB::table('products')->where('special', '=', 'Yes')->get();
+        // dd($special_products);
+        return view('frontend/index', ['category' => $category_name, 'special_products' => $special_products, 'trending_item' => $trending_products]);
     }
+
 
     public function contactPage(){
         return view('frontend/contact');
@@ -53,12 +56,15 @@ class productController extends Controller
 
     public function addProduct(Request $req)
     {
+    //  dd($req->file());   
         // dd($req);
         $req->validate(
             [
                 'product_name' => 'required',
                 'postdesc' => 'required',
-                'fileToUpload' => 'required',
+                'category' => 'required',
+                'price' => 'required',
+                'orignal_price' => 'required',
                 'category' => 'required',
             ]
         );
@@ -68,16 +74,43 @@ class productController extends Controller
         $product->name = $req->product_name;
         $product->description = $req->postdesc;
 
-        if ($req->hasFile('fileToUpload')) {
-            $file = $req->file('fileToUpload');
+        if ($req->hasFile('front_side_img')) {
+            $file = $req->file('front_side_img');
             $extention = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extention;
             $file->move('uploads/products', $filename);
             $product->img = $filename;
         }
+        if ($req->hasFile('right_side_img')) {
+            $file = $req->file('right_side_img');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('uploads/products', $filename);
+            $product->right_side_img = $filename;
+        }
+        if ($req->hasFile('back_side_img')) {
+            $file = $req->file('back_side_img');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('uploads/products', $filename);
+            $product->back_side_img = $filename;
+        }
+        if ($req->hasFile('up_side_img')) {
+            $file = $req->file('up_side_img');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $file->move('uploads/products', $filename);
+            $product->up_side_img = $filename;
+        }
         $product->category = $req->category;
+        $product->luxury = $req->luxury;
+        $product->trending = $req->trending;
+        $product->special = $req->special;
+        $product->gender = $req->gender;
         $product->orignal_price = $req->orignal_price;
         $product->price = $req->price;
+        $product->created_at = date('Y-m-d H:i:s');
+        // dd($product);
         $product->save();
 
         return redirect('admin/products')->with('status', 'Data Inserted Successfully');

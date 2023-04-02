@@ -139,7 +139,7 @@
                                                 class="far fa-heart"></i></a>`
                                         <a class="btn btn-outline-dark btn-square" href=""><i
                                                 class="fa fa-sync-alt"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i
+                                        <a class="btn btn-outline-dark btn-square" href="{{route('view.product.detail')}}"><i
                                                 class="fa fa-search"></i></a>
                                     </div>
                                 </div>

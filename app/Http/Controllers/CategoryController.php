@@ -26,49 +26,54 @@ class CategoryController extends Controller
     //Get Categorys for mobile 
     public function getLuxuryCategory()
     {
-        $categorys = DB::table('products')
-            ->join('categorys', 'categorys.id', '=', 'products.category')
-            ->where('categorys.is_luxury', '=', 'Yes')
-            ->get()->toArray();
+        // $categorys = DB::table('products')
+        //     ->join('categorys', 'categorys.id', '=', 'products.category')
+        //     ->where('categorys.is_luxury', '=', 'Yes')
+        //     ->get()->toArray();
+        
+        $luxury_products = DB::table('products')->where('luxury', '=', 'Yes')->get()->toArray();
 
-
-        return view('frontend/category', ['categorys' => $categorys, 'category_name' => 'Luxury Products']);
+        return view('frontend/category', ['categorys' => $luxury_products, 'category_name' => 'Luxury Products']);
     }
 
     public function getWomanCategory()
     {
         # code...
-        $categorys = DB::table('products')
-            ->join('categorys', 'categorys.id', '=', 'products.category')
-            ->where('categorys.gender', '=', 'Female')
-            ->get()->toArray();
+        // $categorys = DB::table('products')
+        //     ->join('categorys', 'categorys.id', '=', 'products.category')
+        //     ->where('categorys.gender', '=', 'Female')
+        //     ->get()->toArray();
+        $woman_products = DB::table('products')->where('gender', '=', 'Female')->get()->toArray();
 
-
-        return view('frontend/category', ['categorys' => $categorys, 'category_name' => "Woman's Products"]);
+        return view('frontend/category', ['categorys' => $woman_products, 'category_name' => "Woman's Products"]);
     }
 
     public function getManCategory()
     {
         # code...
-        $categorys = DB::table('products')
-            ->join('categorys', 'categorys.id', '=', 'products.category')
-            ->where('categorys.gender', '=', 'Male')
-            ->get()->toArray();
+        // $categorys = DB::table('products')
+        //     ->join('categorys', 'categorys.id', '=', 'products.category')
+        //     ->where('categorys.gender', '=', 'Male')
+        //     ->get()->toArray();
+        
+        $male_products = DB::table('products')->where('gender', '=', 'Male')->get()->toArray();
 
 
-        return view('frontend/category', ['categorys' => $categorys, 'category_name' => "Male's Products"]);
+        return view('frontend/category', ['categorys' => $male_products, 'category_name' => "Male's Products"]);
     }
 
     public function getUnisexCategory()
     {
         # code...
-        $categorys = DB::table('products')
-            ->join('categorys', 'categorys.id', '=', 'products.category')
-            ->where('categorys.gender', '=', 'Female')
-            ->get()->toArray();
+        // $categorys = DB::table('products')
+        //     ->join('categorys', 'categorys.id', '=', 'products.category')
+        //     ->where('categorys.gender', '=', 'Female')
+        //     ->get()->toArray();
+
+        $unisex_products = DB::table('products')->where('gender', '=', 'Unisex')->get()->toArray();
 
 
-        return view('frontend/category', ['categorys' => $categorys, 'category_name' => "Unisex Products"]);
+        return view('frontend/category', ['categorys' => $unisex_products, 'category_name' => "Unisex Products"]);
     }
 
     // *** Backend Side Stuff***

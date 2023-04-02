@@ -18,29 +18,6 @@
                                 <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <select class="form-control" name="gender">
-                                <option value="">Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Unisex">Unisex</option>
-                            </select>
-                            @error('gender')
-                                <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Is Luxsury</label>
-                            <select class="form-control" name="luxsury">
-                                <option value="">Is Luxsury</option>
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>
-                            </select>
-                            @error('luxsury')
-                                <span style="color: red; margin-left:0%; font-weight: bold">{{ $message }}</span>
-                            @enderror
-                        </div>
                         <input type="submit" name="save" class="btn btn-primary" value="Save" required />
                     </form>
                     <!-- /Form End -->

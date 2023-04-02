@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
@@ -23,8 +24,14 @@ class UserController extends Controller
         return view('frontend/usersignup');
     }
 
+    //Check login Credential
     public function userLogin(Request $req)
     {
+        $msg = $req->validate([
+            'user' => 'required',
+            'email' => 'required|email',
+        ]);
+
         $userData = DB::table('users')->where('email', '=', $req->email)->first();
         //Check password is matched ?
         if ($userData->password == $req->pass) {
@@ -33,7 +40,7 @@ class UserController extends Controller
 
             return redirect(route('home.index'));
         } else {
-            
+            //Not Matched
             return back()->with('error', "Email and Password Is Wrong!");
         }
     }
@@ -41,9 +48,9 @@ class UserController extends Controller
     public function addNewUser(Request $req)
     {
 
-        $msg = $req->validate([
+        $validate = Validator::make($req->all(), [
             'user' => 'required',
-            'email' => 'required|email',
+            'email' => 'unique:users,email,$this->id,id',
             'password' => [
                 'required',
                 Password::min(8)
@@ -51,13 +58,19 @@ class UserController extends Controller
             'password_confirmation' => 'required|same:password'
         ]);
 
-        DB::table('users')->insert([
-            "name" => $req->user,
-            "email" => $req->email,
-            "password" => $req->password,
-        ]);
+        if($validate->fails()){
+            return Redirect::back()->withErrors($validate);
+        }else{
+            $is_insert = DB::table('users')->insert([
+                "name" => $req->user,
+                "email" => $req->email,
+                "password" => $req->password,
+            ]);
+        }
 
-        return view('frontend/usersignup', ['errors' => $msg]);
+        if($is_insert === True){
+            return redirect(route('home.index'));
+        }
     }
 
     // Backend Side Code !!!
@@ -66,7 +79,7 @@ class UserController extends Controller
     public function checkLogin(Request $req)
     {
         # code...
-        $validator = Validator::make($req->all(), [
+        Validator::make($req->all(), [
             'username' => 'required',
             'password' => 'required'
         ]);

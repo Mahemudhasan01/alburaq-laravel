@@ -25,15 +25,22 @@
         <!-- container -->
         <div class="container">
             <!-- row -->
-            <div class="row">
+            <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex ml-0">
                 <!-- LOGO -->
-                <div class="col-md-2">
-                    <a href="post.php"><img class="logo" src="{{ url('frontend/images/news.jpg') }}"></a>
-                </div>
+                    <div class="col-lg-3">
+                        <a href="{{ route('home.index') }}" class="text-decoration-none">
+                            <span class="h1 text-uppercase text-primary bg-dark px-2">
+                                Al
+                            </span>
+                            <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">
+                                BuraQ
+                            </span>
+                        </a>
+                    </div>
                 <!-- /LOGO -->
                 <!-- LOGO-Out -->
                 <div class="col-md-offset-9  col-md-1">
-                    <a href="{{route('admin.logout')}}" class="admin-logout">logout</a>
+                    <span><a href="{{route('admin.logout')}}" class="admin-logout">logout</a></span>
                 </div>
                 <!-- /LOGO-Out -->
             </div>
